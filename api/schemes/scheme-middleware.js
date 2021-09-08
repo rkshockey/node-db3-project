@@ -1,6 +1,6 @@
 const { findById } = require('./scheme-model');
 const stepSchema = require('../../schema/stepSchema')
-const schemeSchema = require('../../schema/schemeSchema')
+// const schemeSchema = require('../../schema/schemeSchema')
 
 /*
   If `scheme_id` does not exist in the database:
