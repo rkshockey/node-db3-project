@@ -1,5 +1,6 @@
 const { findById } = require('./scheme-model');
 const stepSchema = require('../../schema/stepSchema')
+const schemeSchema = require('../../schema/schemeSchema')
 
 /*
   If `scheme_id` does not exist in the database:
@@ -32,11 +33,12 @@ const checkSchemeId = async (req, res, next) => {
     "message": "invalid scheme_name"
   }
 */
-const validateScheme = (req, res, next) => {
-  if (req.body.scheme_name){
-    next();
-  }else{
-    next({ status: 400, message: 'invalid scheme_name' });
+const validateScheme = async (req, res, next) => {
+  try {
+    await schemeSchema.validate(req.body)
+    next()
+  } catch (err){
+    next({ status: 400, message: err.errors[0] });
   }
 }
 
