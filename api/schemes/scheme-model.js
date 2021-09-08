@@ -15,6 +15,7 @@ function find() { // EXERCISE A
     2A- When you have a grasp on the query go ahead and build it in Knex.
     Return from this function the resulting dataset.
   */
+  return 'find wired'
 }
 
 function findById(scheme_id) { // EXERCISE B
@@ -83,6 +84,7 @@ function findById(scheme_id) { // EXERCISE B
         "steps": []
       }
   */
+  return 'findById wired'
 }
 
 function findSteps(scheme_id) { // EXERCISE C
@@ -106,12 +108,14 @@ function findSteps(scheme_id) { // EXERCISE C
         }
       ]
   */
+  return 'findSteps wired'
 }
 
 function add(scheme) { // EXERCISE D
   /*
     1D- This function creates a new scheme and resolves to _the newly created scheme_.
   */
+  return 'add wired'
 }
 
 function addStep(scheme_id, step) { // EXERCISE E
@@ -120,6 +124,7 @@ function addStep(scheme_id, step) { // EXERCISE E
     and resolves to _all the steps_ belonging to the given `scheme_id`,
     including the newly created one.
   */
+  return 'addStep wired'
 }
 
 module.exports = {
