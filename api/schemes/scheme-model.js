@@ -103,7 +103,7 @@ async function findById(scheme_id) { // EXERCISE B
       'st.instructions'
     )
     .where({'sc.scheme_id': scheme_id})
-    .orderBy('step_number')
+    .orderBy('step_number');
   
   if (rows[0]){
     return {
@@ -116,13 +116,13 @@ async function findById(scheme_id) { // EXERCISE B
           instructions: item.instructions
         }}) :
         []
-    }
+    };
   }else{
-    return null
+    return null;
   }
 }
 
-function findSteps(scheme_id) { // EXERCISE C
+async function findSteps(scheme_id) { // EXERCISE C
   /*
     1C- Build a query in Knex that returns the following data.
     The steps should be sorted by step_number, and the array
@@ -143,7 +143,18 @@ function findSteps(scheme_id) { // EXERCISE C
         }
       ]
   */
-  return 'findSteps wired'
+  const steps = await db('schemes as sc')
+    .join('steps as st', 'st.scheme_id', 'sc.scheme_id')
+    .select(
+      'sc.scheme_name',
+      'st.step_id',
+      'st.step_number',
+      'st.instructions'
+    )
+    .where('sc.scheme_id', scheme_id)
+    .orderBy('step_number');
+  
+  return steps
 }
 
 function add(scheme) { // EXERCISE D
