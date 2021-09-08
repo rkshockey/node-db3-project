@@ -161,19 +161,24 @@ async function add(scheme) { // EXERCISE D
   /*
     1D- This function creates a new scheme and resolves to _the newly created scheme_.
   */
-  await db('schemes').insert(scheme)
-  const newScheme = db('schemes').where('scheme_name', scheme.scheme_name)
+  const [id] = await db('schemes').insert(scheme)
+  const newScheme = db('schemes').where('scheme_id', id)
 
   return newScheme
 }
 
-function addStep(scheme_id, step) { // EXERCISE E
+async function addStep(scheme_id, step) { // EXERCISE E
   /*
     1E- This function adds a step to the scheme with the given `scheme_id`
     and resolves to _all the steps_ belonging to the given `scheme_id`,
     including the newly created one.
   */
-  return 'addStep wired'
+  await db('steps').insert({...step, scheme_id: scheme_id})
+  const newSteps = db('steps')
+    .where('scheme_id', scheme_id)
+    .orderBy('step_number')
+
+  return newSteps
 }
 
 module.exports = {
