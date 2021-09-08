@@ -12,13 +12,12 @@ const schemeSchema = require('../../schema/schemeSchema')
 */
 const checkSchemeId = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const scheme = findById(id);
-    console.log('checkSchemeId wired');
+    const { scheme_id } = req.params;
+    const scheme = await findById(scheme_id);
     if (scheme) {
       next();
     }else{
-      next({ status: 404, message: `scheme with scheme_id ${id} not found`});
+      next({ status: 404, message: `scheme with scheme_id ${scheme_id} not found`});
     }
   } catch (err) {
     next(err)
